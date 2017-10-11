@@ -8,24 +8,45 @@
     $msg = '';
     
     if (isset($_POST['login']) && !empty($_POST['username']) 
-     && !empty($_POST['password'])) {
+     && !empty($_POST['password']) && !empty($_POST['logintype'])) {
     
     echo "hello gwapo";
     
     $username = $_POST['username'];
     $password = $_POST['password'];
+    $logintype = $_POST['logintype'];
     
-    echo $username . $password;
+    echo $username . $password . $logintype; 
+    
+    if ($logintype == "employee") {
          
     $sql = "SELECT * FROM employeetable WHERE username='$username' AND password='$password'";
     $login = $conn->query($sql);
     $count = mysqli_num_rows($login);
     echo $count;
     
+    $row = $login->fetch_assoc();
+            $employeeid = $row["employeeid"];
+            
+            $redirect = "employeedetail.php";
+        } elseif ($logintype == "admin") {
+            $sql = "SELECT * FROM admintable WHERE username='$username' AND password='$password' ";
+            $login = $conn->query($sql);
+            $count = mysqli_num_rows($login);
+            
+            $row = $login->fetch_assoc();
+            $employeeid = $row["employeeid"];
+            
+            $redirect = "admin_home.php";
+        } else {
+            $msg = "Please select Login Type";
+        }
+    
      if ($count == 1) {
             
         $_SESSION['username'] = $username;
-        header("Location: employeedetail.php"); /* Redirect browser */
+        $_SESSION['employeeid'] = $employeeid;
+        header("Location: $redirect"); /* Redirect browser */
         exit();  
 
      }else {

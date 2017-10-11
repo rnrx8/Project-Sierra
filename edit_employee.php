@@ -41,10 +41,10 @@ if ($result->num_rows > 0) {
 }
         ?>
         <form action="employee_editdata.php" method="POST">
-           Name: <input type="text" name="name"><br>
-            Username: <input type="text" name="username"><br>
-            EmployeeID: <input type="text" name="employeeid"><br>
-            Password: <input type="password" name="password">
+           Name: <input type="text" name="name" value="<?php echo $name; ?>"><br>
+            Username: <input type="text" name="username" value="<?php echo $username; ?>"><br>
+            EmployeeID: <input type="text" name="employeeid" value="<?php echo $employeeid; ?>"><br>
+            Password: <input type="password" name="password" value="<?php echo $password; ?>"><br>
             Department: <br> 
             
             

@@ -38,12 +38,12 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        $infoID = $row["infoID"];
+        $employeeid = $row["employeeid"];
         echo "<tr><td>" . $row["employeeid"] . "</td>";
         echo "<td>" . $row["name"] . "</td>";
         echo "<td>" . $row["department"] . "</td>";
         echo "<td><a href='edit_employee.php?employeeid=$employeeid'><button>edit</button></a>";
-        echo "<a href='employee_delete.php?employeeid=$employeeid'><button>delete</button></a></td>";
+        echo "<a href='employee_delete.php?employeeid=$employeeid'><button>delete</button></a></td></tr>";
     }
 } else {
     echo "0 results";
